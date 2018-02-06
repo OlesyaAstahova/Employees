@@ -9,11 +9,11 @@ namespace Employees
    partial class Employee
     {
         //Поля данных
-        private string empName;
-        private int empID;
-        private string empSSN;
-        private float currPay;
-        private int empAge;
+        protected string empName;
+        protected int empID;
+        protected string empSSN;
+        protected float currPay;
+        protected int empAge;
 
         //Обновленные конструкторы
         public Employee() { }
