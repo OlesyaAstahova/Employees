@@ -8,6 +8,14 @@ namespace Employees
 {
      partial class Employee
     {
+        public class BenefitPackage
+        {
+            public double ComputePayDeduction() { return 125.0; }
+            public enum BenefitPackageLevel
+            {
+                Standard, Gold, Platinum
+            }
+        }
         //Содержит объект BenefitPackage
         protected BenefitPackage empBenefits = new BenefitPackage();
 
