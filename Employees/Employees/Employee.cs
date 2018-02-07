@@ -6,69 +6,50 @@ using System.Threading.Tasks;
 
 namespace Employees
 {
-    partial class Employee
+     partial class Employee
     {
-       
-        public int Age
+        //Содержит объект BenefitPackage
+        protected BenefitPackage empBenefits = new BenefitPackage();
+
+        //Открывает некоторое поведение, связанное с включенным объектом
+        public double GetBenefitCost ()
         {
-            get
-            {
-                return empAge;
-            }
-            set
-            {
-                empAge = value;
-            }
+            return empBenefits.ComputePayDeduction();
+        }
+        //Открывет объект через специальное свойство
+        public BenefitPackage Benefits
+        {
+            get { return empBenefits; }
+            set { empBenefits = value; }
         }
 
-
+        public int Age
+        {
+            get{return empAge;}
+            set {empAge = value;}
+        }
         //Свойства
         public string Name
         {
-            get
-            {
-                return empName;
-            }
-            set
-            {
-                if (value.Length > 15)
-                {
-                    Console.WriteLine("Error! Name must be less than 16 characters!");
-                }
-                else
-                {
-                    empName = value;
-                }
+            get{return empName;}
+            set{if (value.Length > 15){
+                    Console.WriteLine("Error! Name must be less than 16 characters!");}
+                else{empName = value;}
             }
         }
-
         //М.б. бы добавить доп. бизнес-правила для установки этих свойств, но нет необходимости
         public int ID
         {
-            get
-            {
-                return empID;
-            }
-            set
-            {
-                empID = value;
-            }
+            get{return empID;}
+            set{empID = value;}
         }
 
         public float Pay
         {
-            get
-            {
-                return currPay;
-            }
-            set
-            {
-                currPay = value;
-            }
+            get{return currPay;}
+            set{currPay = value;}
         }
-
-
-        
+               
         //Методы
         public string GetName()
         {
@@ -114,6 +95,8 @@ namespace Employees
             Console.WriteLine("Age: {0}", Age);
             Console.WriteLine("Pay: {0}", Pay);
             Console.WriteLine("SSN: {0}", empSSN);
+
+
         }
      
     }
@@ -144,6 +127,7 @@ namespace Employees
         }
         public Salesperson() { }
     }
+
     sealed class PTSalesPerson : Salesperson
     {
         public int WorkTime { get; set; }
@@ -159,4 +143,18 @@ namespace Employees
         }
         public PTSalesPerson() { }
     }
+      
+
+     
+
+
+    public class OuterClass
+        {
+            // Открытый вложенный тип могут использовать все.
+            public class PublicInnerClass { }
+            // Приватный вложенный тип могут использовать только члены
+            // содержащего его класса.
+            private class PrivateInnerClass { }
+        }
+
 }
