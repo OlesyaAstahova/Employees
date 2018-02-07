@@ -98,14 +98,22 @@ namespace Employees
             {
                 return empSSN;
             }
+            set
+            {
+                empSSN = value;
+            }
         }
+
+        
+
         //Обновленный метод DisplayStats() 
-        public void DisplayStats ()
+        public virtual void DisplayStats ()
         {
             Console.WriteLine("Name: {0}", Name);
             Console.WriteLine("ID: {0}", ID);
             Console.WriteLine("Age: {0}", Age);
             Console.WriteLine("Pay: {0}", Pay);
+            Console.WriteLine("SSN: {0}", empSSN);
         }
      
     }
@@ -113,29 +121,42 @@ namespace Employees
     {
         public int StockOptions { get; set; }
 
-        public Manager(string fullName, int age, int empID, float currPay, string ssn, int numbOfOpts) : base (fullName, age, empID, currPay, ssn)
+        public Manager(string fullName, int age, int empID, float currPay, string empSSN, int numbOfOpts) : base (fullName, age, empID, currPay)
         {
             //Это свойство определено в классе Manager
-            StockOptions = numbOfOpts;
-            //Присвоить входные параметры, используя унаследованные свойства родительского класса
-            /*
-            ID = empID;
-            Age = age;
-            Name = fullName;
-            Pay = currPay;*/
-            //Ошибка компиляции,т.к. свойство доступно только для чтения
-           // SocialSecurityNumber = ssn;
+            this.StockOptions = numbOfOpts;
         }
         public Manager() { }
     } 
-    // В качестве общего правила, все подклассы должны явно вызвать соответствующий конструктор базового класса
+   
     class Salesperson : Employee
     {
         public int SalesNumber { get; set; }
-        public Salesperson(string fullName, int age, int empID, float currPay, string ssn, int numbOfSales) : base(fullName, age, empID, currPay, ssn)
+        public Salesperson(string fullName, int age, int empID, float currPay, string ssn, int numbOfSales) : base (fullName, age, empID, currPay, ssn)
         {
-            SalesNumber = numbOfSales;
+            this.SalesNumber = numbOfSales;
+        }
+
+        public override void DisplayStats()
+        {
+            base.DisplayStats();
+            Console.WriteLine("SalesNumber: {0}", SalesNumber);
         }
         public Salesperson() { }
+    }
+    sealed class PTSalesPerson : Salesperson
+    {
+        public int WorkTime { get; set; }
+
+        public PTSalesPerson(string fullName, int age, int empID, float currPay, string ssn,  string empSSN, int numbOfSales,int TimeWork) : base(fullName, age, empID, currPay, empSSN, numbOfSales)
+        {
+             this.WorkTime = TimeWork;
+         }
+        public override void DisplayStats()
+        {
+            base.DisplayStats();
+            Console.WriteLine("WorkTime: {0}", WorkTime);
+        }
+        public PTSalesPerson() { }
     }
 }
