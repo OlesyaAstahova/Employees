@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Employees
 {
-     partial class Employee
+
+    abstract partial class Employee
     {
+        
         public virtual void GiveBonus(float amount)
         {
             Pay += amount;
@@ -128,10 +130,10 @@ namespace Employees
             Console.WriteLine("Number of stock options: {0}", StockOptions);
         }
     }
-  
+
     class Salesperson : Employee
     {
-        public override void GiveBonus(float amount)
+        public override sealed void GiveBonus(float amount)
         {
             int salesBonus = 0;
             if (SalesNumber >= 0 && SalesNumber <= 100)
@@ -169,6 +171,7 @@ namespace Employees
         {
              this.WorkTime = TimeWork;
          }
+       
         public override void DisplayStats()
         {
             base.DisplayStats();
@@ -176,8 +179,8 @@ namespace Employees
         }
         public PTSalesPerson() { }
     }
-      
 
+    
  
     public class OuterClass
         {

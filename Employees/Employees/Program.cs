@@ -6,11 +6,29 @@ using System.Threading.Tasks;
 
 namespace Employees
 {
+
     class Program
     {
+        static void CastingExamples()
+        {
+            object frank = new Manager("Frank Zappa", 9, 300, 4000, "111-11-1111", 5);
+            GivePromotion((Manager)frank);
+            Employee moonUnit = new Manager("MoonUnit Zappa", 2, 3001, 20000, "101-11-1321", 1);
+            GivePromotion(moonUnit);
+
+            Salesperson jill = new PTSalesPerson("Jill", 834, 3002, 10000, "111-12-1119", "12321324", 90, 5);
+            GivePromotion(jill);
+
+        }
+        static void GivePromotion(Employee emp)
+        {
+            Console.WriteLine("{0} was promoted!", emp.Name);
+        }
         static void Main(string[] args)
         {
-            Employee.BenefitPackage.BenefitPackageLevel myBenefitLevel = Employee.BenefitPackage.BenefitPackageLevel.Platinum;
+            CastingExamples();
+
+          /*  Employee.BenefitPackage.BenefitPackageLevel myBenefitLevel = Employee.BenefitPackage.BenefitPackageLevel.Platinum;
             // Создание и использование открытого внутреннего класса. Все ОК!
             OuterClass.PublicInnerClass inner;
             inner = new OuterClass.PublicInnerClass();
@@ -41,9 +59,9 @@ namespace Employees
             Console.WriteLine("\n***************\n");
             A.DisplayStats();
 
-
+  */
             Console.ReadLine();
-          
+        
         }
     }
 }
