@@ -8,7 +8,7 @@ namespace Employees
 {
      partial class Employee
     {
-        public void GiveBonus(float amount)
+        public virtual void GiveBonus(float amount)
         {
             Pay += amount;
         }
@@ -110,18 +110,43 @@ namespace Employees
     }
     class Manager : Employee
     {
+        public override void GiveBonus(float amount) { 
+     Random r = new Random();
+     StockOptions += r.Next(500);
+   }
         public int StockOptions { get; set; }
 
         public Manager(string fullName, int age, int empID, float currPay, string empSSN, int numbOfOpts) : base (fullName, age, empID, currPay)
         {
             //Это свойство определено в классе Manager
             this.StockOptions = numbOfOpts;
-        }
+        }   
         public Manager() { }
-    } 
-   
+        public override void DisplayStats()
+        {
+         base.DisplayStats();
+            Console.WriteLine("Number of stock options: {0}", StockOptions);
+        }
+    }
+  
     class Salesperson : Employee
     {
+        public override void GiveBonus(float amount)
+        {
+            int salesBonus = 0;
+            if (SalesNumber >= 0 && SalesNumber <= 100)
+                salesBonus = 10;
+            else
+            {
+                if (SalesNumber >= 101 && SalesNumber <= 200)
+                    salesBonus = 15;
+                else
+                    salesBonus = 20;
+            }
+            base.GiveBonus(amount * salesBonus);
+          }
+        
+
         public int SalesNumber { get; set; }
         public Salesperson(string fullName, int age, int empID, float currPay, string ssn, int numbOfSales) : base (fullName, age, empID, currPay, ssn)
         {
