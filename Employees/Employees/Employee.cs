@@ -8,7 +8,11 @@ namespace Employees
 {
      partial class Employee
     {
-        public class BenefitPackage
+        public void GiveBonus(float amount)
+        {
+            Pay += amount;
+        }
+        public  class BenefitPackage
         {
             public double ComputePayDeduction() { return 125.0; }
             public enum BenefitPackageLevel
@@ -76,11 +80,7 @@ namespace Employees
                 empName = name;
             }
         }
-        public void GiveBonus (float amount)
-        {
-            Pay += amount;
-        }
-
+       
         public string SocialSecurityNumber
         {
             get
@@ -153,9 +153,7 @@ namespace Employees
     }
       
 
-     
-
-
+ 
     public class OuterClass
         {
             // Открытый вложенный тип могут использовать все.
@@ -164,5 +162,5 @@ namespace Employees
             // содержащего его класса.
             private class PrivateInnerClass { }
         }
-
+   
 }

@@ -22,23 +22,22 @@ namespace Employees
 
 
         Console.WriteLine("***** The Employee Class Hierarchy *****\n");
-            Salesperson fred = new Salesperson();
-            fred.Age = 31;
-            fred.Name = "Fred";
-            fred.SalesNumber = 50;
-            fred.ID = 777;
-            
-            fred.SocialSecurityNumber = "123";
+            Salesperson fred = new Salesperson("Fred",43,93,3000,"932-32-3232",31);
+            /* fred.Age = 31;
+             fred.Name = "Fred";
+             fred.SalesNumber = 50;
+             fred.ID = 777;
+             fred.SocialSecurityNumber = "123";*/
+            fred.GiveBonus(200);
             fred.DisplayStats();
             
             Console.WriteLine("\n***************\n");
             //Предположим, что у Manager есть конструктор со следующей сигнатурой 
             // (string fullName, int age, int empID, float currPay, string ssn, int numbOfOpts)
-            Manager chucky = new Manager("Chucky", 50, 92, 1000000, "333-23-2322", 9000);
-
-            //  chucky.DisplayStats();
+            //Manager chucky = new Manager("Chucky", 50, 92, 100000, "333-23-2322", 9000);
             Employee cost = new Employee("Chucky", 50, 92, 1000000, "333-23-2322");
             double cost1 = cost.GetBenefitCost();
+            cost.GiveBonus(300);
 
             cost.DisplayStats();
             Console.WriteLine(cost1);
