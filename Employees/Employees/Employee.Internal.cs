@@ -18,7 +18,7 @@ namespace Employees
         //Обновленные конструкторы
         public Employee() { }
         public Employee(string name, int age, int id, float pay)
-            : this(name, 20, id, pay, "Только для чтения") { }
+            : this(name, 20, id, pay, "333-23-2322") { }
 
         public Employee(string name, int age, int id, float pay, string ssn)
         {
